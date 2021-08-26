@@ -31,23 +31,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyIiwic2lkI
 }
 
 ###
-Post http://localhost:5000/api/user/signup
+Post http://137.184.75.4:5000/api/user/signup
 Content-Type: application/json
 
 {
-  "username": "testuser2",
-  "password": "password1",
-  "name": "TestName1",
-  "lastname": "TestLastName1",
+  "username": "Manuel",
+  "password": "manuel",
+  "name": "manuel",
+  "lastname": "lopez",
   "groupId": 1
 }
 ###
-Post http://localhost:5000/api/user/login
+Post http://137.184.75.4:5000/api/user/login
 Content-Type: application/json
 
 {
-  "username": "testuser6",
-  "password": "password1"
+  "username": "Manuel",
+  "password": "manuel"
 
 }
 
