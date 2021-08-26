@@ -58,7 +58,7 @@ namespace api
             
             services.AddScoped<IEtedFormRepo, EtedFormRepo>();
             services.AddDbContext<AppDbContext>(opt => opt
-                .UseNpgsql("Host=localhost;Database=etedApi;Username=postgres;Password=manumanu18"));
+                .UseNpgsql("Host=localhost;Database=etedApi;Username=postgres;Password=postgres"));
             services.AddControllers().AddNewtonsoftJson(options => 
                 ptions.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);;
             services.AddSwaggerGen(c =>
