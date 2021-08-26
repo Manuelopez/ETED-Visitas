@@ -60,7 +60,7 @@ namespace api
             services.AddDbContext<AppDbContext>(opt => opt
                 .UseNpgsql("Host=localhost;Database=etedApi;Username=postgres;Password=postgres"));
             services.AddControllers().AddNewtonsoftJson(options => 
-                ptions.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);;
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);;
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api", Version = "v1" });
