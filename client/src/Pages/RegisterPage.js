@@ -48,7 +48,7 @@ export default function LogPage() {
   const [groupSelected, setGroupSelected] = React.useState();
 
   const registerClicked = async () => {
-    const response = await fetch('https://137.184.75.4:5001/api/user/signup', {
+    const response = await fetch('http://137.184.75.4:5000/api/user/signup', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -67,7 +67,7 @@ export default function LogPage() {
   };
   const getGroups = async () => {
     try {
-      const response = await fetch('https://137.184.75.4:5001/api/group', {
+      const response = await fetch('http://137.184.75.4:5000/api/group', {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
@@ -80,7 +80,7 @@ export default function LogPage() {
 
       setGroupRecords(formatedData);
     } catch (error) {
-      console.log;
+      console.log(error);
     }
   };
 

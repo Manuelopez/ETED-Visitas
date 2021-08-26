@@ -32,7 +32,7 @@ const FormPage = (props) => {
     const token = localStorage.getItem('token');
     try {
       const response = await fetch(
-        'https://137.184.75.4:5001/api/visitform/filter',
+        'http://137.184.75.4:5000/api/visitform/filter',
         {
           method: 'POST',
           headers: {
@@ -63,7 +63,7 @@ const FormPage = (props) => {
 
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
-    const response = await fetch('https://137.184.75.4:5001/api/node', {
+    const response = await fetch('http://137.184.75.4:5000/api/node', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -88,7 +88,7 @@ const FormPage = (props) => {
 
     try {
       const response = await fetch(
-        'https://137.184.75.4:5001/api/visitform/filter',
+        'http://137.184.75.4:5000/api/visitform/filter',
         {
           method: 'POST',
           headers: {
