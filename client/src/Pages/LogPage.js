@@ -43,7 +43,7 @@ export default function LogPage() {
 
   const loginClicked = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/user/login', {
+      const response = await fetch('https://137.184.75.4:5001/api/user/login', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

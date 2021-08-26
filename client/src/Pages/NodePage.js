@@ -18,7 +18,7 @@ const NodePage = (props) => {
   const deleteNodeClicked = async () => {
     const token = localStorage.getItem('token');
 
-    await fetch(`http://localhost:5000/api/node/${selectedNode.value}`, {
+    await fetch(`https://137.184.75.4:5001/api/node/${selectedNode.value}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -35,7 +35,7 @@ const NodePage = (props) => {
   const updateNodeClicked = async () => {
     const token = localStorage.getItem('token');
 
-    await fetch(`http://localhost:5000/api/node/${selectedNode.value}`, {
+    await fetch(`https://137.184.75.4:5001/api/node/${selectedNode.value}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -56,7 +56,7 @@ const NodePage = (props) => {
   };
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/api/node', {
+    const response = await fetch('https://137.184.75.4:5001/api/node', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -81,7 +81,7 @@ const NodePage = (props) => {
   const saveNewNodeClicked = async () => {
     const token = localStorage.getItem('token');
 
-    const response = await fetch('http://localhost:5000/api/node', {
+    const response = await fetch('https://137.184.75.4:5001/api/node', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

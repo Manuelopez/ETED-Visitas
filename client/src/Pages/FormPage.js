@@ -32,7 +32,7 @@ const FormPage = (props) => {
     const token = localStorage.getItem('token');
     try {
       const response = await fetch(
-        'http://localhost:5000/api/visitform/filter',
+        'https://137.184.75.4:5001/api/visitform/filter',
         {
           method: 'POST',
           headers: {
@@ -63,7 +63,7 @@ const FormPage = (props) => {
 
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/api/node', {
+    const response = await fetch('https://137.184.75.4:5001/api/node', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -88,7 +88,7 @@ const FormPage = (props) => {
 
     try {
       const response = await fetch(
-        'http://localhost:5000/api/visitform/filter',
+        'https://137.184.75.4:5001/api/visitform/filter',
         {
           method: 'POST',
           headers: {
@@ -145,7 +145,7 @@ const FormPage = (props) => {
       const blobCSV = new Blob([csvString], { type: 'text/csv' });
 
       const responseImages = await fetch(
-        'http://localhost:5000/api/visitform/images',
+        'https://137.184.75.4:5001/api/visitform/images',
         {
           method: 'POST',
           headers: {
@@ -178,7 +178,7 @@ const FormPage = (props) => {
   const deleteVisitClicked = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/visitform/${id}`, {
+      await fetch(`https://137.184.75.4:5001/api/visitform/${id}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',

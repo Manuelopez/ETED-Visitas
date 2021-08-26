@@ -37,7 +37,7 @@ const AddFormPage = (props) => {
 
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5000/api/node', {
+    const response = await fetch('https://137.184.75.4:5001/api/node', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -66,7 +66,7 @@ const AddFormPage = (props) => {
       (activity) => activity.label
     );
     try {
-      await fetch('http://localhost:5000/api/visitform', {
+      await fetch('https://137.184.75.4:5001/api/visitform', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

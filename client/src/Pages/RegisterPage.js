@@ -48,7 +48,7 @@ export default function LogPage() {
   const [groupSelected, setGroupSelected] = React.useState();
 
   const registerClicked = async () => {
-    const response = await fetch('http://localhost:5000/api/user/signup', {
+    const response = await fetch('https://137.184.75.4:5001/api/user/signup', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -66,18 +66,22 @@ export default function LogPage() {
     window.location.pathname = '/';
   };
   const getGroups = async () => {
-    const response = await fetch('http://localhost:5000/api/group', {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-    const jsonData = await response.json();
-    const formatedData = jsonData.map((group) => {
-      return { value: group.id, label: group.name };
-    });
+    try {
+      const response = await fetch('https://137.184.75.4:5001/api/group', {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      const jsonData = await response.json();
+      const formatedData = jsonData.map((group) => {
+        return { value: group.id, label: group.name };
+      });
 
-    setGroupRecords(formatedData);
+      setGroupRecords(formatedData);
+    } catch (error) {
+      console.log;
+    }
   };
 
   React.useEffect(() => {
@@ -177,51 +181,3 @@ export default function LogPage() {
     </Container>
   );
 }
-
-// import React from 'react';
-// import Select from 'react-select';
-
-// import { isAuth } from '../Middleware/isAuth';
-
-// const RegisterPage = (props) => {
-
-//   React.useEffect(() => {
-//
-//   }, []);
-
-//   return (
-//     <div>
-//       <label>
-//         Usuario:
-//         <input value={username} onChange={(e) => setUsername(e.target.value)} />
-//       </label>
-//       <label>
-//         Contraseña:
-//         <input
-//           type="password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-//       </label>
-//       <label>
-//         Nombre: <input value={name} onChange={(e) => setName(e.target.value)} />
-//       </label>
-//       <label>
-//         Apellido:
-//         <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
-//       </label>
-
-//       <label>
-//         Grupo:
-//         <Select
-//           options={groupRecord}
-//           value={groupSelected}
-//           onChange={(group) => setGroupSelected(group)}
-//         />
-//       </label>
-//       <button onClick={registerClicked}>Registrar</button>
-//     </div>
-//   );
-// };
-
-// export default RegisterPage;

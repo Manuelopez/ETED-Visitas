@@ -21,7 +21,7 @@ const UserPage = (props) => {
   const updateUserClicked = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/user', {
+      const response = await fetch('https://137.184.75.4:5001/api/user', {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
@@ -47,7 +47,7 @@ const UserPage = (props) => {
   const getUserInfo = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/user', {
+      const response = await fetch('https://137.184.75.4:5001/api/user', {
         method: 'GET',
         headers: {
           authorization: `Bearer ${token}`,
