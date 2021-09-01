@@ -14,5 +14,7 @@ namespace api.Dto
     public string LastName { get; set; }
     [Required]
     public int GroupId { get; set; }
+    [Required]
+    public string SpecialKey { get; set; }
   }
 }

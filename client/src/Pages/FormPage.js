@@ -26,7 +26,7 @@ const FormPage = (props) => {
 
   const classes = useStyles();
 
-  const fetchForms = async () => {
+  const fetchForms = React.useCallback(async () => {
     const filterNodes = selectedNode.map((node) => node.value);
     const filterPhaseData = filterPhase.map((phase) => phase.label);
     const token = localStorage.getItem('token');
@@ -42,8 +42,8 @@ const FormPage = (props) => {
           body: JSON.stringify({
             filterNodes,
             filterPhase: filterPhaseData,
-            filterFromDate,
-            filterUntilDate,
+            filterFromDate: filterFromDate || undefined,
+            filterUntilDate: filterUntilDate || undefined,
             filterZone,
             skip,
             take: 50,
@@ -52,14 +52,21 @@ const FormPage = (props) => {
       );
 
       const jsonData = await response.json();
-      if (jsonData.error) {
+      if (jsonData.error || jsonData.errors) {
       } else {
         setFormVisitsData(jsonData);
       }
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [
+    filterUntilDate,
+    filterFromDate,
+    filterZone,
+    filterPhase,
+    selectedNode,
+    skip,
+  ]);
 
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
@@ -203,6 +210,7 @@ const FormPage = (props) => {
     filterFromDate,
     filterZone,
     skip,
+    fetchForms,
   ]);
 
   return (

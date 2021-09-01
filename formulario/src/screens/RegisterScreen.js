@@ -14,7 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Constants from 'expo-constants';
 
-export default function LoginScreen({ navigation }) {
+export default function RegisterScreen({ navigation }) {
   const [username, setUsername] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
@@ -80,7 +80,7 @@ export default function LoginScreen({ navigation }) {
         Login
       </Button>
       <View style={styles.row}>
-        <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
+        <TouchableOpacity onPress={() => navigation.replace('Register')}>
           <Text style={styles.link}>Registrar</Text>
         </TouchableOpacity>
       </View>

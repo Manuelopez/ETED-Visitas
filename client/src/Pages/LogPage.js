@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -51,9 +49,10 @@ export default function LogPage() {
         body: JSON.stringify({ username, password }),
       });
       const jsonData = await response.json();
-      localStorage.setItem('token', jsonData.token);
-
-      window.location.pathname = '/form';
+      if (jsonData.token) {
+        localStorage.setItem('token', jsonData.token);
+        window.location.pathname = '/form';
+      }
     } catch (error) {
       console.log(error);
     }

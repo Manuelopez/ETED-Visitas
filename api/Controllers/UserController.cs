@@ -48,7 +48,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Erros = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
     }
     [HttpPut]
@@ -80,7 +80,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Erros = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
     }
 
@@ -124,7 +124,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Erros = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
 
     }
@@ -134,15 +134,20 @@ namespace api.Controllers
     {
       try
       {
-        string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
-        user.Password = passwordHash;
-        var newUser = _repository.CreateUser(user);
-        _repository.SaveChanges();
-        return Ok(new {Ok = "User Created"});
+        if(user.SpecialKey == "ETED_AOFJVWKEOBI")
+        {
+          string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+          user.Password = passwordHash;
+          var newUser = _repository.CreateUser(user);
+          _repository.SaveChanges();
+          return Ok(new {Ok = "User Created"});
+        }
+        return BadRequest(new {Errors = "Incorrect Key"});
+        
       }
       catch
       {
-        return BadRequest(new {Error = "user exist"});
+        return BadRequest(new {Errors = "user exist"});
       }
       
     }

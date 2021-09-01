@@ -21,7 +21,7 @@ export const isAuth = async (url) => {
         window.location.pathname = url;
       }
     }
-  } catch {
-    console.log('error');
+  } catch (error) {
+    console.log(error);
   }
 };

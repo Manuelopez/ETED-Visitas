@@ -49,7 +49,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
 
       
@@ -74,7 +74,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
     
     }
@@ -113,7 +113,7 @@ namespace api.Controllers
         claims = AuthenticationMiddleware.ValidateJsonWebToken(tokenToValidate);
 
         var foundForm = _repository.GetVisitForm(id);
-        if(foundForm == null) BadRequest(new {Error = "Form not Found"});
+        if(foundForm == null) BadRequest(new {Errors = "Form not Found"});
         _repository.DeleteForm(foundForm);
         _repository.SaveChanges();
 
@@ -121,7 +121,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
       
     }

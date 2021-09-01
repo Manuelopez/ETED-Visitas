@@ -38,7 +38,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
 
       int groupId = Convert.ToInt32(claims.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sid).Value);
@@ -63,7 +63,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
       int groupId = Convert.ToInt32(claims.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sid).Value);
 
@@ -71,7 +71,7 @@ namespace api.Controllers
 
       if(foundNode == null)
       {
-        return NotFound(new {Error = "Node not found"});
+        return NotFound(new {Errors = "Node not found"});
       }
       return Ok(foundNode);
     }
@@ -92,7 +92,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
       int groupId = Convert.ToInt32(claims.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sid).Value);
 
@@ -117,7 +117,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
       int groupId = Convert.ToInt32(claims.Claims.First(c => c.Type == JwtRegisteredClaimNames.Sid).Value);
 
@@ -125,7 +125,7 @@ namespace api.Controllers
       
       if(foundNode == null)
       {
-        return NotFound(new {Error = "Node not found"});
+        return NotFound(new {Errors = "Node not found"});
       }
       var newUdatedNode = _repository.UpdateNode(foundNode, updatedNode);
       _repository.SaveChanges();
@@ -151,7 +151,7 @@ namespace api.Controllers
         var foundNode = _repository.GetNodeById(id, groupId);
         if(foundNode == null)
         {
-          return NotFound(new {Error = "Node not found"});
+          return NotFound(new {Errors = "Node not found"});
         }
         _repository.DeleteNode(foundNode);
         _repository.SaveChanges();
@@ -160,7 +160,7 @@ namespace api.Controllers
       }
       catch
       {
-        return BadRequest(new {Error = "Invalid Token"});
+        return BadRequest(new {Errors = "Invalid Token"});
       }
 
       

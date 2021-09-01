@@ -46,24 +46,30 @@ export default function LogPage() {
   const [lastName, setLastName] = React.useState('');
   const [groupRecord, setGroupRecords] = React.useState([]);
   const [groupSelected, setGroupSelected] = React.useState();
+  const [specialKey, setSpecialKey] = React.useState('');
 
   const registerClicked = async () => {
-    const response = await fetch('http://137.184.75.4:5000/api/user/signup', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-        name,
-        lastName,
-        groupId: groupSelected.value,
-      }),
-    });
-    const jsonData = await response.json();
-    console.log(jsonData);
-    window.location.pathname = '/';
+    try {
+      const response = await fetch('http://137.184.75.4:5000/api/user/signup', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          name,
+          lastName,
+          groupId: groupSelected.value,
+          specialKey,
+        }),
+      });
+      const jsonData = await response.json();
+      console.log(jsonData);
+      if (!jsonData.errors) {
+        window.location.pathname = '/';
+      }
+    } catch (error) {}
   };
   const getGroups = async () => {
     try {
@@ -145,6 +151,18 @@ export default function LogPage() {
           fullWidth
           name="lastName"
           label="Apellido"
+          id="password"
+          autoComplete="current-password"
+        />
+        <TextField
+          value={specialKey}
+          onChange={(e) => setSpecialKey(e.target.value)}
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="lastName"
+          label="Calve Especial"
           id="password"
           autoComplete="current-password"
         />
