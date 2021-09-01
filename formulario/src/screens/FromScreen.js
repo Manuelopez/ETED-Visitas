@@ -111,15 +111,18 @@ const FormScreen = () => {
     }
   };
   const addFormClicked = async () => {
-    const pickedNode = nodeOriginalRecord.find(
-      (node) => node.name === selectedNode
-    );
-
-    const token = await AsyncStorage.getItem('token');
-    const formatedActivity = selectedResonForVisit.map(
-      (reason) => reason.value
-    );
     try {
+      const pickedNode = nodeOriginalRecord.find(
+        (node) => node.name === selectedNode
+      );
+
+      const token = await AsyncStorage.getItem('token');
+      const formatedActivity = selectedResonForVisit.map(
+        (reason) => reason.value
+      );
+      console.log('ran');
+      console.log(token);
+
       const response = await fetch('http://137.184.75.4:5000/api/visitform', {
         method: 'POST',
         headers: {
@@ -141,7 +144,9 @@ const FormScreen = () => {
       });
       const jsonData = await response.json();
       console.log(jsonData);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -31,6 +31,8 @@ namespace api.Controllers
         .ToString()
         .Substring("Bearer ".Length)
         .Trim();
+        
+      Console.WriteLine(tokenToValidate);
 
       ClaimsPrincipal claims;
       
