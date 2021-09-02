@@ -58,10 +58,11 @@ const AddFormPage = (props) => {
     const token = localStorage.getItem('token');
     const imagesData = [];
     for (let image of selectedImages) {
-      const base64string = await getBase64(image);
+      let base64string = await getBase64(image);
+      base64string = base64string.split(',')[1];
       imagesData.push(base64string);
     }
-
+    console.log(imagesData);
     const formatedSelectedActivities = selectedActivity.map(
       (activity) => activity.label
     );
@@ -96,7 +97,7 @@ const AddFormPage = (props) => {
       setStaffPresent('');
       setTimeIn('');
       setTimeOut('');
-      setSelectedImages(null);
+      // setSelectedImages(null);
       // const jsonData = await response.json();
     } catch (error) {
       console.log(error);

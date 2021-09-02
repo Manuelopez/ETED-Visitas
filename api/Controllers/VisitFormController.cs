@@ -48,7 +48,7 @@ namespace api.Controllers
         VisitForm newVisitForm = _repository.CreateVisitForm(visitForm, groupId, userId);
         _repository.SaveChanges();
       
-      return Ok(new {Ok= "ok"});
+        return Ok(newVisitForm);
       }
       catch
       {
