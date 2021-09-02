@@ -120,8 +120,8 @@ const FormScreen = () => {
       const formatedActivity = selectedResonForVisit.map(
         (reason) => reason.value
       );
-      console.log('ran');
-      console.log(token);
+
+      console.log(imagesData);
 
       const response = await fetch('http://137.184.75.4:5000/api/visitform', {
         method: 'POST',
@@ -137,8 +137,8 @@ const FormScreen = () => {
           activityDone: activityPreformed,
           observations: observations,
           staffPresent: staffPresent,
-          timeIn: timeIn.toLocaleTimeString().substr(0, 5),
-          timeOut: timeOut.toLocaleTimeString().substr(0, 5),
+          timeIn: timeIn.toLocaleTimeString(),
+          timeOut: timeOut.toLocaleTimeString(),
           images: imagesData,
         }),
       });

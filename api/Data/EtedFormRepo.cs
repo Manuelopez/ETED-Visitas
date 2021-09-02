@@ -89,7 +89,7 @@ namespace api.Data
         };
         
         images.Add(imageToSave);
-        var imageBase64 = image.Split(',')[1];
+        var imageBase64 = image;
         byte[] bytes = Convert.FromBase64String(imageBase64);
         System.IO.File.WriteAllBytes(thisImagePath, bytes);
       }
