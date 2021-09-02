@@ -152,7 +152,7 @@ const FormPage = (props) => {
       const blobCSV = new Blob([csvString], { type: 'text/csv' });
 
       const responseImages = await fetch(
-        'https://137.184.75.4:5001/api/visitform/images',
+        'http://137.184.75.4:5000/api/visitform/images',
         {
           method: 'POST',
           headers: {
