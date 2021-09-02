@@ -36,6 +36,7 @@ namespace api.Controllers
 
       ClaimsPrincipal claims;
       
+      Console.WriteLine(visitForm);
   
       try
       {
@@ -44,8 +45,8 @@ namespace api.Controllers
         int userId = Convert.ToInt32(claims.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
       
       
-        // VisitForm newVisitForm = _repository.CreateVisitForm(visitForm, groupId, userId);
-        // _repository.SaveChanges();
+        VisitForm newVisitForm = _repository.CreateVisitForm(visitForm, groupId, userId);
+        _repository.SaveChanges();
       
       return Ok(new {Ok= "ok"});
       }
