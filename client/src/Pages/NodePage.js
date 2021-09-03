@@ -40,7 +40,7 @@ const NodePage = (props) => {
   const updateNodeClicked = async () => {
     const token = localStorage.getItem('token');
 
-    await fetch(`https://137.184.75.4:5001/api/node/${selectedNode.value}`, {
+    await fetch(`http://137.184.75.4:5000/api/node/${selectedNode.value}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -58,6 +58,7 @@ const NodePage = (props) => {
     fetchNodes();
     setDefaults();
   };
+
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
     const response = await fetch('http://137.184.75.4:5000/api/node', {
@@ -110,6 +111,7 @@ const NodePage = (props) => {
       }),
     });
     setDefaults();
+    fetchNodes();
     const jsonData = await response.json();
     console.log(jsonData);
   };
@@ -130,6 +132,8 @@ const NodePage = (props) => {
             setNodeName(node.label);
             setNodePhase(node.phase);
             setNodeZone(node.zone);
+            setNodeLatitude(node.latitude);
+            setNodeLongitude(node.longitude);
           }}
           className={classes.selectNode}
         />

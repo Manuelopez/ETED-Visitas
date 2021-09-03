@@ -184,7 +184,7 @@ const FormPage = (props) => {
   const deleteVisitClicked = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`https://137.184.75.4:5001/api/visitform/${id}`, {
+      await fetch(`http://137.184.75.4:5000/api/visitform/${id}`, {
         method: 'DELETE',
         headers: {
           'content-type': 'application/json',
