@@ -3,6 +3,12 @@ import Select from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+// import {
+//   withScriptjs,
+//   withGoogleMap,
+//   GoogleMap,
+//   Marker,
+// } from 'react-google-maps';
 
 import { isAuth } from '../Middleware/isAuth';
 
@@ -12,6 +18,8 @@ const NodePage = (props) => {
   const [nodeZone, setNodeZone] = React.useState('');
   const [nodesRecords, setNodesRecord] = React.useState([]);
   const [selectedNode, setSelectedNode] = React.useState();
+  const [nodeLatitude, setNodeLatitude] = React.useState('');
+  const [nodeLongitude, setNodeLongitude] = React.useState('');
 
   const classes = useStyles();
 
@@ -26,10 +34,7 @@ const NodePage = (props) => {
       },
     });
     fetchNodes();
-    setNodeName('');
-    setNodePhase('');
-    setNodeZone('');
-    setSelectedNode(null);
+    setDefaults();
   };
 
   const updateNodeClicked = async () => {
@@ -45,14 +50,13 @@ const NodePage = (props) => {
         name: nodeName,
         zone: nodeZone,
         phase: nodePhase,
+        latitude: parseFloat(nodeLatitude),
+        longitude: parseFloat(nodeLongitude),
       }),
     });
 
     fetchNodes();
-    setNodeName('');
-    setNodePhase('');
-    setNodeZone('');
-    setSelectedNode(null);
+    setDefaults();
   };
   const fetchNodes = async () => {
     const token = localStorage.getItem('token');
@@ -72,10 +76,20 @@ const NodePage = (props) => {
           label: node.name,
           zone: node.zone,
           phase: node.phase,
+          longitude: node.longitude,
+          latitude: node.latitude,
         };
       });
       setNodesRecord(formatedData);
     }
+  };
+  const setDefaults = () => {
+    setNodeName('');
+    setNodePhase('');
+    setNodeZone('');
+    setNodeLongitude('');
+    setNodeLatitude('');
+    setSelectedNode(null);
   };
 
   const saveNewNodeClicked = async () => {
@@ -91,15 +105,13 @@ const NodePage = (props) => {
         name: nodeName,
         phase: nodePhase,
         zone: nodeZone,
+        latitude: parseFloat(nodeLatitude),
+        longitude: parseFloat(nodeLongitude),
       }),
     });
-
+    setDefaults();
     const jsonData = await response.json();
     console.log(jsonData);
-    setNodeName('');
-    setNodePhase('');
-    setNodeZone('');
-    setSelectedNode(null);
   };
 
   React.useEffect(() => {
@@ -146,6 +158,22 @@ const NodePage = (props) => {
           <Input
             value={nodeZone}
             onChange={(e) => setNodeZone(e.target.value)}
+            style={{ width: 300, marginBottom: 20 }}
+          />
+        </label>
+        <label>
+          <p>Latitud</p>
+          <Input
+            value={nodeLatitude}
+            onChange={(e) => setNodeLatitude(e.target.value)}
+            style={{ width: 300, marginBottom: 20 }}
+          />
+        </label>
+        <label>
+          <p>Longitud</p>
+          <Input
+            value={nodeLongitude}
+            onChange={(e) => setNodeLongitude(e.target.value)}
             style={{ width: 300, marginBottom: 20 }}
           />
         </label>

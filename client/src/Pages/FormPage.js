@@ -147,7 +147,6 @@ const FormPage = (props) => {
       for (let i = 0; i < csvData.length; i++) {
         csvJoinedData.push(csvData[i].join(','));
       }
-      console.log(csvJoinedData);
       csvString = csvJoinedData.join('\n');
       const blobCSV = new Blob([csvString], { type: 'text/csv' });
 

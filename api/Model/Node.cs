@@ -8,5 +8,7 @@ namespace api.Model
     public string Zone { get; set; }
     public int GroupId { get; set; }
     public Group Group { get; set; }
+    public float Latitude { get; set; }
+    public float Longitude { get; set; }
   }
 }

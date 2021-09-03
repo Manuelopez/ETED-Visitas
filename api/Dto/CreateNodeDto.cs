@@ -12,5 +12,9 @@ namespace api.Dto
     public string Zone { get; set; }
     [Required]
     public int GroupId { get; set; }
+    [Required]
+    public float Latitude { get; set; }
+    [Required]
+    public float Longitude { get; set; }
   }
 }

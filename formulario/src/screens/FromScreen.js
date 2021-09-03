@@ -121,8 +121,6 @@ const FormScreen = () => {
         (reason) => reason.value
       );
 
-      console.log(imagesData);
-
       const response = await fetch('http://137.184.75.4:5000/api/visitform', {
         method: 'POST',
         headers: {

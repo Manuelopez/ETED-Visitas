@@ -10,5 +10,9 @@ namespace api.Dto
     public string Phase { get; set; }
     [Required]
     public string Zone { get; set; }
+    [Required]
+    public float Latitude { get; set; }
+    [Required]
+    public float Longitude { get; set; }
   }
 }

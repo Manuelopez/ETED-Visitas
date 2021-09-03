@@ -28,7 +28,9 @@ namespace api.Data
         Name = node.Name,
         Phase = node.Phase,
         Zone = node.Zone,
-        GroupId = groupId
+        GroupId = groupId,
+        Latitude = node.Latitude,
+        Longitude = node.Longitude
       };
       _context.Nodes.Add(newNode);
 
@@ -207,6 +209,8 @@ namespace api.Data
       node.Name = updateNode.Name;
       node.Zone = updateNode.Zone;
       node.Phase = updateNode.Phase;
+      node.Longitude = updateNode.Longitude;
+      node.Latitude = updateNode.Latitude;
       return node;
     }
 
