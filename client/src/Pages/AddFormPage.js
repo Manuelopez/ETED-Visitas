@@ -192,8 +192,9 @@ const AddFormPage = (props) => {
           <label>
             <p>Fotos</p>
             <Input
+              inputProps={{ multiple: true }}
               type="file"
-              multiple
+              multiple={true}
               onChange={(e) => setSelectedImages(e.target.files)}
             />
           </label>
