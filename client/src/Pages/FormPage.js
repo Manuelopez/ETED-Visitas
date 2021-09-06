@@ -133,8 +133,8 @@ const FormPage = (props) => {
           visit.reasonForVisit,
           visit.activityDone,
           visit.observations,
-          imagesId.join(', '),
-          visit.staffPresent.join(', '),
+          imagesId.join(' - '),
+          visit.staffPresent.join(' - '),
           visit.timeIn,
           visit.timeOut,
         ];
