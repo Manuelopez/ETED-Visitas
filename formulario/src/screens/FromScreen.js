@@ -12,15 +12,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectDropdown from 'react-native-select-dropdown';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SelectMultiple from 'react-native-select-multiple';
-// import { AssetsSelector } from 'expo-images-picker';
-// import ImagePicker from 'react-native-image-crop-picker';
-// import CameraRoll from '@react-native-community/cameraroll';
-// import MultipleImagePicker from '@baronha/react-native-multiple-image-picker';
-// import * as ImagePicker from 'react-native-image-picker';
-// import ImagePicker from 'react-native-customized-image-picker';
-// import CameraRollPicker from 'react-native-camera-roll-picker';
-// import * as ImagePicker from 'react-native-full-image-picker';
-// import ImagePicker from 'react-native-new-image-picker';
+
 import * as ImagePicker from 'expo-image-picker';
 
 const reasonForVisit = [
@@ -149,93 +141,143 @@ const FormScreen = () => {
 
   return (
     <ScrollView>
-      {showDate && (
-        <DateTimePicker value={date} onChange={onDateChange} mode="date" />
-      )}
-      <Text>Selecionar Dia</Text>
-      <TouchableOpacity
-        onPress={() => {
-          setShowDate(true);
-        }}
-      >
-        <Text style={styles.textDatePickerStyle}>{date.toDateString()}</Text>
-      </TouchableOpacity>
-      <SelectDropdown
-        data={nodeRecords}
-        onSelect={(selectedItem) => {
-          setSelectedNode(selectedItem);
-        }}
-      />
-      <SelectMultiple
-        items={reasonForVisit}
-        selectedItems={selectedResonForVisit}
-        onSelectionsChange={(reason) => setSelectedReasonsForVisit(reason)}
-      />
-      <Text>Motivo de visita</Text>
-      <TextInput style={styles.input} onChangeText={setMotive} value={motive} />
-      <Text>Actividad Realizada</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setActivityPreformed}
-        value={activityPreformed}
-      />
-      <Text>Observaciones</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setObservations}
-        value={observations}
-      />
-      <Text>Personal Acompañado</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setStaffPresent}
-        value={staffPresent}
-      />
-      {showTimeIn && (
-        <DateTimePicker value={timeIn} onChange={onTimeInChange} mode="time" />
-      )}
-      <Text>Hora In</Text>
-      <TouchableOpacity
-        onPress={() => {
-          setShowTimeIn(true);
-        }}
-      >
-        <Text style={styles.textDatePickerStyle}>
-          {timeIn.toLocaleTimeString()}
-        </Text>
-      </TouchableOpacity>
-      {showTimeOut && (
-        <DateTimePicker
-          value={timeOut}
-          onChange={onTimeOutChange}
-          mode="time"
+      <View style={styles.root}>
+        {showDate && (
+          <DateTimePicker value={date} onChange={onDateChange} mode="date" />
+        )}
+        <Text style={styles.textTitle}>Fecha *</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setShowDate(true);
+          }}
+        >
+          <Text style={styles.textDatePickerStyle}>{date.toDateString()}</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.textTitle}>Nodo *</Text>
+        <SelectDropdown
+          style={styles.selectNode}
+          data={nodeRecords}
+          onSelect={(selectedItem) => {
+            setSelectedNode(selectedItem);
+          }}
         />
-      )}
-      <Text>Hora Out</Text>
-      <TouchableOpacity
-        onPress={() => {
-          setShowTimeOut(true);
-        }}
-      >
-        <Text style={styles.textDatePickerStyle}>
-          {timeOut.toLocaleTimeString()}
-        </Text>
-      </TouchableOpacity>
 
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+        <Text style={styles.textTitle}>Actividad *</Text>
+        <SelectMultiple
+          items={reasonForVisit}
+          selectedItems={selectedResonForVisit}
+          onSelectionsChange={(reason) => setSelectedReasonsForVisit(reason)}
+        />
 
-      <Button onPress={addFormClicked} title="Agregar Formulario" />
+        <Text style={styles.textTitle}>Motivo de visita *</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setMotive}
+          value={motive}
+        />
+
+        <Text style={styles.textTitle}>Actividad Realizada *</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setActivityPreformed}
+          value={activityPreformed}
+        />
+
+        <Text style={styles.textTitle}>Observaciones *</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setObservations}
+          value={observations}
+        />
+
+        <Text style={styles.textTitle}>Personal Acompañado *</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setStaffPresent}
+          value={staffPresent}
+        />
+
+        {showTimeIn && (
+          <DateTimePicker
+            value={timeIn}
+            onChange={onTimeInChange}
+            mode="time"
+          />
+        )}
+        <Text style={styles.textTitle}>Hora In *</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setShowTimeIn(true);
+          }}
+        >
+          <Text style={styles.textDatePickerStyle}>
+            {timeIn.toLocaleTimeString()}
+          </Text>
+        </TouchableOpacity>
+
+        {showTimeOut && (
+          <DateTimePicker
+            value={timeOut}
+            onChange={onTimeOutChange}
+            mode="time"
+          />
+        )}
+        <Text style={styles.textTitle}>Hora Out *</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setShowTimeOut(true);
+          }}
+        >
+          <Text style={styles.textDatePickerStyle}>
+            {timeOut.toLocaleTimeString()}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={pickImage}>
+          <Text style={styles.buttonText}>Pick an image from camera roll</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={addFormClicked}>
+          <Text style={styles.buttonText}>Agregar Visita</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  root: {
+    margin: 30,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  textTitle: {
+    fontSize: 20,
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+
+  button: {
+    marginTop: 10,
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    textAlign: 'center',
+    padding: 15,
+  },
+
   textDatePickerStyle: {
     fontSize: 18,
+    borderWidth: 1,
+    padding: 10,
   },
   input: {
     height: 40,
-    margin: 12,
+
     borderWidth: 1,
     padding: 10,
   },

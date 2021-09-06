@@ -9,8 +9,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyIiwic2lkI
 }
 
 ###
-Get http://137.184.75.4:5000/api/node
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyIiwic2lkIjoiMSIsImV4cCI6MTYyOTkxMDg5NiwiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.k2Hk5HLlYwlKRy4709B3UuUV0y93lbJg4uBtBofA_Eg
+Get http://localhost:5000/api/node
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxIiwic2lkIjoiMSIsImV4cCI6MTYzMTExMjMwMywiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.fMF9wBWmdFTZPO9njggWGmx3NufJPRo4iCuN2X8JmcU
 
 ###
 Get http://137.184.75.4:5000/api/node/1
@@ -22,7 +22,7 @@ DELETE http://localhost:5000/api/node/2
 ###
 PUT http://localhost:5000/api/node/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyIiwic2lkIjoiMSIsImV4cCI6MTYyOTkxMDg5NiwiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.k2Hk5HLlYwlKRy4709B3UuUV0y93lbJg4uBtBofA_Eg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxIiwic2lkIjoiMSIsImV4cCI6MTYzMTExMjMwMywiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.fMF9wBWmdFTZPO9njggWGmx3NufJPRo4iCuN2X8JmcU
 
 {
   "name": "testSub2",
@@ -70,7 +70,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyIiwic2lkI
 ###
 Post http://137.184.75.4:5000/api/user/isLogged
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxIiwic2lkIjoiMSIsImV4cCI6MTYzMTA0NDc1MSwiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.ml-NDwulfVCtDhsCZebELppp3U5Cz5c54hXbml8ggsg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxIiwic2lkIjoiMSIsImV4cCI6MTYzMTExNDU2NywiaXNzIjoiRXRlZEFwaS5jb20iLCJhdWQiOiJFdGVkQXBpLmNvbSJ9.wTfIA9-cInP1Q-DMpGoh-Tg3ciC2rRUYFMa2nTeHRdQ
 
 ### 
 Post http://localhost:5000/api/visitform/filter
