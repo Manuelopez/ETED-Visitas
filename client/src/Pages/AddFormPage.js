@@ -17,7 +17,8 @@ const activityOptions = [
   { value: 6, label: 'Inspeccion' },
   { value: 7, label: 'Visita de Cortesia' },
   { value: 8, label: 'Levantamiento' },
-  { value: 9, label: 'Otras' },
+  { value: 9, label: 'Combustible' },
+  { value: 10, label: 'Otras' },
 ];
 
 const AddFormPage = (props) => {
