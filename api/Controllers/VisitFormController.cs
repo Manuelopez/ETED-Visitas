@@ -32,11 +32,9 @@ namespace api.Controllers
         .Substring("Bearer ".Length)
         .Trim();
         
-      Console.WriteLine(tokenToValidate);
 
       ClaimsPrincipal claims;
       
-      Console.WriteLine(visitForm);
   
       try
       {
