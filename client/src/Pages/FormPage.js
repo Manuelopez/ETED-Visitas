@@ -316,14 +316,14 @@ const FormPage = (props) => {
                   <td className={classes.tableCells}>{visit.node.phase}</td>
                   <td className={classes.tableCells}>{visit.node.zone}</td>
                   <td className={classes.tableCells}>
-                    {visit.activity.join(', ')}
+                    {visit.activity.join(' - ')}
                   </td>
                   <td className={classes.tableCells}>{visit.reasonForVisit}</td>
                   <td className={classes.tableCells}>{visit.activityDone}</td>
                   <td className={classes.tableCells}>{visit.observations}</td>
-                  <td className={classes.tableCells}>{imagesId.join(', ')}</td>
+                  <td className={classes.tableCells}>{imagesId.join(' - ')}</td>
                   <td className={classes.tableCells}>
-                    {visit.staffPresent.join(', ')}
+                    {visit.staffPresent.join(' - ')}
                   </td>
                   <td className={classes.tableCells}>{visit.timeIn}</td>
                   <td className={classes.tableCells}>{visit.timeOut}</td>

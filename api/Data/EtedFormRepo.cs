@@ -170,10 +170,7 @@ namespace api.Data
         .Skip(filter.Skip)
         .AsQueryable();
      
-      if(filter.Take > 0)
-      {
-        visitForms = visitForms.Take(filter.Take);
-      }
+      
       if(filter.FilterNodes.Length > 0)
       {
         visitForms = visitForms.Where(form => filter.FilterNodes.Contains(form.NodeId));
@@ -194,6 +191,10 @@ namespace api.Data
       if(filter.FilterZone != "" || filter.FilterZone != null)
       {
         visitForms = visitForms.Where(from => from.Node.Zone.Contains(filter.FilterZone));
+      }
+      if(filter.Take > 0)
+      {
+        visitForms = visitForms.Take(filter.Take);
       }
 
       return visitForms.ToList();
