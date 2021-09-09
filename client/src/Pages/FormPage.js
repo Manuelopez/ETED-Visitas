@@ -105,8 +105,8 @@ const FormPage = (props) => {
           body: JSON.stringify({
             filterNodes,
             filterPhase: filterPhaseData,
-            filterFromDate,
-            filterUntilDate,
+            filterFromDate: filterFromDate || undefined,
+            filterUntilDate: filterUntilDate || undefined,
             filterZone,
             skip: 0,
             take: 0,
@@ -115,7 +115,6 @@ const FormPage = (props) => {
       );
 
       const formsData = await response.json();
-
       for (let visit of formsData) {
         for (let img of visit.images) {
           imagesToDownload.push(img.id);
