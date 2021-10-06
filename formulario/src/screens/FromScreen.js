@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  Alert,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -25,6 +26,10 @@ const reasonForVisit = [
   'Visita de Cortesia',
   'Levantamiento',
   'Otros',
+  'Combustible',
+  'Supervision',
+  'Recepcion',
+  'Reparacion',
 ];
 
 const FormScreen = () => {
@@ -46,6 +51,38 @@ const FormScreen = () => {
   const [imagesData, setImagesData] = React.useState([]);
   const [nodeOriginalRecord, setNodeOriginalRecord] = React.useState([]);
 
+  const imageAlert = () => {
+    Alert.alert('Imagen agregada', 'Imagen ha sido agregada al formulario', [
+      { text: 'ok' },
+    ]);
+  };
+
+  const errorImageAlert = () => {
+    Alert.alert('Imagen error', 'Error agregando Imagen al formulario', [
+      { text: 'ok', style: 'cancel' },
+    ]);
+  };
+
+  const formVistAlert = () => {
+    Alert.alert(
+      'Formulario creado',
+      'El formulario se ha agregado a la base de datos',
+      [{ text: 'ok' }]
+    );
+  };
+  const formVistErrorAlert = () => {
+    Alert.alert(
+      'Error creando Formulario',
+      'Error agreando el formulario a la base de datos',
+      [{ text: 'ok', style: 'cancel' }]
+    );
+  };
+
+  const formVisitIncompletAlert = (message) => {
+    Alert.alert('Error creando Formulario', message, [
+      { text: 'ok', style: 'cancel' },
+    ]);
+  };
   const getNodes = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
@@ -88,6 +125,19 @@ const FormScreen = () => {
     setTimeOut(currentTime);
   };
 
+  const setDefault = () => {
+    setDate(new Date());
+    setSelectedNode();
+    setSelectedReasonsForVisit([]);
+    setMotive('');
+    setActivityPreformed('');
+    setObservations('');
+    setStaffPresent('');
+    setTimeIn(new Date());
+    setTimeOut(new Date());
+    setImagesData([]);
+  };
+
   const pickImage = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -98,21 +148,42 @@ const FormScreen = () => {
       const imagesDataCopy = [...imagesData];
       imagesDataCopy.push(result.base64);
       setImagesData(imagesDataCopy);
+      imageAlert();
     } catch (error) {
-      console.log(error);
+      errorImageAlert();
     }
   };
   const addFormClicked = async () => {
+    let incompleteMessage = '';
+    if (selectedNode === '') {
+      incompleteMessage += 'No hay un nodo seleccionado\n';
+    }
+    if (selectedResonForVisit.length === 0) {
+      incompleteMessage += 'No ha selecionado Actividad\n';
+    }
+    if (motive === '') {
+      incompleteMessage += 'Campo de Motivo de visita vacio\n';
+    }
+    if (activityPreformed === '') {
+      incompleteMessage += 'Campo deActividad realizda vacio\n';
+    }
+    if (observations === '') {
+      incompleteMessage += 'Campo de Obeservaciones vacio';
+    }
+    if (imagesData.length === 0) {
+      incompleteMessage += '0 fotos agregada al formulario';
+    }
+    if (incompleteMessage !== '') {
+      return formVisitIncompletAlert(incompleteMessage);
+    }
     try {
       const pickedNode = nodeOriginalRecord.find(
         (node) => node.name === selectedNode
       );
-
       const token = await AsyncStorage.getItem('token');
       const formatedActivity = selectedResonForVisit.map(
         (reason) => reason.value
       );
-
       const response = await fetch('http://137.184.75.4:5000/api/visitform', {
         method: 'POST',
         headers: {
@@ -134,8 +205,10 @@ const FormScreen = () => {
       });
       const jsonData = await response.json();
       console.log(jsonData);
+      setDefault();
+      formVistAlert();
     } catch (error) {
-      console.log(error);
+      formVistErrorAlert();
     }
   };
 
@@ -234,8 +307,12 @@ const FormScreen = () => {
           </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={styles.button} onPress={setDefault}>
+          <Text style={styles.buttonText}>Resetear Formulario</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.button} onPress={pickImage}>
-          <Text style={styles.buttonText}>Pick an image from camera roll</Text>
+          <Text style={styles.buttonText}>Agregar Foto</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={addFormClicked}>

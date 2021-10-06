@@ -21,6 +21,7 @@ const activityOptions = [
   { value: 10, label: 'Supervision' },
   { value: 11, label: 'Recepcion' },
   { value: 12, label: 'Reparacion' },
+  { value: 12, label: 'Averia' },
   { value: 13, label: 'Otras' },
 ];
 

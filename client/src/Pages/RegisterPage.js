@@ -162,7 +162,7 @@ export default function LogPage() {
           required
           fullWidth
           name="lastName"
-          label="Calve Especial"
+          label="Clave Especial"
           id="password"
           autoComplete="current-password"
         />

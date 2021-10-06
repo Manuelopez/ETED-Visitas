@@ -14,7 +14,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: 'Log',
     defaultNavigationOptions: {
-      title: 'Empresa de Trasmicion Electrica Dominicana',
+      title: 'EMPRESA DE TRANSMISIÓN ELÉCTRICA DOMINICANA',
     },
   }
 );
