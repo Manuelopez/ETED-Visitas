@@ -62,10 +62,12 @@ const AddFormPage = (props) => {
   const submitForm = async () => {
     const token = localStorage.getItem('token');
     const imagesData = [];
-    for (let image of selectedImages) {
-      let base64string = await getBase64(image);
-      base64string = base64string.split(',')[1];
-      imagesData.push(base64string);
+    if (selectedImages) {
+      for (let image of selectedImages) {
+        let base64string = await getBase64(image);
+        base64string = base64string.split(',')[1];
+        imagesData.push(base64string);
+      }
     }
     console.log(imagesData);
     const formatedSelectedActivities = selectedActivity.map(
